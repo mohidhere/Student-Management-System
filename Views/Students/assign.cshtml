@@ -1,0 +1,132 @@
+﻿@model studentmanagement.Models.Student
+
+@{
+    ViewData["Title"] = "Assign Batch & Section";
+}
+
+<div class="card">
+
+    <div class="card-header">
+        <h3 class="card-title">
+            Assign Batch & Section
+        </h3>
+    </div>
+
+    <div class="card-body">
+
+        <form asp-action="Assign" method="post">
+
+            <input asp-for="Id" type="hidden" />
+            <input asp-for="StudentCode" type="hidden" />
+            <input asp-for="Name" type="hidden" />
+            <input asp-for="FatherName" type="hidden" />
+            <input asp-for="Email" type="hidden" />
+            <input asp-for="PhoneNumber" type="hidden" />
+            <input asp-for="Gender" type="hidden" />
+            <input asp-for="DateOfBirth" type="hidden" />
+            <input asp-for="Age" type="hidden" />
+            <input asp-for="Course" type="hidden" />
+            <input asp-for="Address" type="hidden" />
+            <input asp-for="City" type="hidden" />
+            <input asp-for="ProfileImage" type="hidden" />
+            <input asp-for="PublicToken" type="hidden" />
+            <input asp-for="RegistrationDate" type="hidden" />
+
+            <!-- Student -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Student Name
+                </label>
+
+                <input class="form-control"
+                       value="@Model.Name"
+                       readonly />
+
+            </div>
+
+            <!-- Course -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Course
+                </label>
+
+                <input class="form-control"
+                       value="@Model.Course"
+                       readonly />
+
+            </div>
+
+            <!-- Batch -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Batch
+                </label>
+
+                <select asp-for="Batch"
+                        class="form-select">
+
+                    <option value="">
+                        -- Select Batch --
+                    </option>
+
+                    @foreach (var batch in ViewBag.Batches)
+                    {
+                        <option value="@batch.BatchName">
+                            @batch.BatchName
+                        </option>
+                    }
+
+                </select>
+
+            </div>
+
+            <!-- Section -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Section
+                </label>
+
+                <select asp-for="Section"
+                        class="form-select">
+
+                    <option value="">
+                        -- Select Section --
+                    </option>
+
+                    @foreach (var item in ViewBag.Sections)
+                    {
+                        <option value="@item.SectionName">
+                            @item.SectionName
+                        </option>
+                    }
+
+                </select>
+
+            </div>
+
+            <button class="btn btn-primary">
+
+                Save Assignment
+
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+
+                Back
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>

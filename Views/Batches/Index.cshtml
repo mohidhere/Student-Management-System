@@ -1,0 +1,152 @@
+﻿@model List<studentmanagement.Models.Batch>
+
+@{
+    ViewData["Title"] = "Batches";
+}
+
+<div class="card">
+
+    <div class="card-header d-flex justify-content-between align-items-center">
+
+        <h3 class="card-title mb-0">
+            Batch List
+        </h3>
+
+        <a asp-controller="Batches"
+           asp-action="Create"
+           class="btn btn-primary">
+
+            <i class="ti ti-plus"></i>
+            Add Batch
+
+        </a>
+
+    </div>
+
+    <div class="card-body">
+
+        @if (TempData["Error"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["Error"]
+            </div>
+        }
+
+        @if (TempData["Success"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["Success"]
+            </div>
+        }
+
+        <!-- Search -->
+        <form asp-action="Index" method="get" class="row mb-4">
+
+            <div class="col-md-8">
+
+                <input type="text"
+                       name="search"
+                       value="@ViewBag.Search"
+                       class="form-control"
+                       placeholder="Search Batch..." />
+
+            </div>
+
+            <div class="col-md-4">
+
+                <button type="submit" class="btn btn-primary">
+                    <i class="ti ti-search"></i>
+                    Search
+                </button>
+
+                <a asp-action="Index"
+                   class="btn btn-secondary">
+                    Reset
+                </a>
+
+            </div>
+
+        </form>
+
+        @if (Model != null && Model.Count > 0)
+        {
+            <div class="table-responsive">
+
+                <table class="table table-bordered table-striped">
+
+                    <thead class="table-light">
+
+                        <tr>
+                            <th>#</th>
+                            <th>Batch Name</th>
+                            <th>Shift</th>
+                            <th>Status</th>
+                            <th width="220">Action</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        @{
+                            int count = 1;
+                        }
+
+                        @foreach (var batch in Model)
+                        {
+                            <tr>
+
+                                <td>@count</td>
+
+                                <td>@batch.BatchName</td>
+
+                                <td>@batch.Shift</td>
+
+                                <td>
+                                    @(batch.Status ? "Active" : "Inactive")
+                                </td>
+
+                                <td>
+
+                                    <a asp-action="Edit"
+                                       asp-route-id="@batch.Id"
+                                       class="btn btn-warning btn-sm">
+
+                                        <i class="ti ti-edit"></i>
+                                        Edit
+
+                                    </a>
+
+                                    <a asp-action="Delete"
+                                       asp-route-id="@batch.Id"
+                                       class="btn btn-danger btn-sm"
+                                       onclick="return confirm('Are you sure you want to delete this batch?');">
+
+                                        <i class="ti ti-trash"></i>
+                                        Delete
+
+                                    </a>
+
+                                </td>
+
+                            </tr>
+
+                            count++;
+                        }
+
+                    </tbody>
+
+                </table>
+
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-warning">
+                No batches found.
+            </div>
+        }
+
+    </div>
+
+</div>

@@ -1,0 +1,76 @@
+﻿@model studentmanagement.Models.Section
+
+@{
+    ViewData["Title"] = "Add Section";
+}
+
+<div class="card">
+
+    <div class="card-header">
+        <h3 class="card-title">Add New Section</h3>
+    </div>
+
+    <div class="card-body">
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <form asp-action="Create" method="post">
+
+            <!-- Section Name -->
+            <div class="mb-3">
+
+                <label asp-for="SectionName" class="form-label"></label>
+
+                <input asp-for="SectionName"
+                       class="form-control"
+                       placeholder="Enter Section Name" />
+
+                <span asp-validation-for="SectionName"
+                      class="text-danger"></span>
+
+            </div>
+
+            <!-- Status -->
+            <div class="mb-3">
+
+                <label asp-for="Status" class="form-label"></label>
+
+                <select asp-for="Status" class="form-select">
+
+                    <option value="true">
+                        Active
+                    </option>
+
+                    <option value="false">
+                        Inactive
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button type="submit"
+                    class="btn btn-primary">
+
+                Save Section
+
+            </button>
+
+            <a asp-action="Index"
+               class="btn btn-secondary">
+
+                Back
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

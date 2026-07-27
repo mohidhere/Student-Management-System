@@ -1,0 +1,238 @@
+﻿<!doctype html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Student Portal</title>
+
+    <link rel="shortcut icon" type="image/png" href="~/assets/images/logos/favicon.png" />
+    <link rel="stylesheet" href="~/assets/css/styles.min.css" />
+    <link rel="stylesheet" href="~/assets/css/custom.css" />
+
+</head>
+
+<body>
+
+    <div class="page-wrapper"
+         id="main-wrapper"
+         data-layout="vertical"
+         data-navbarbg="skin6"
+         data-sidebartype="full"
+         data-sidebar-position="fixed"
+         data-header-position="fixed">
+
+        <!-- Sidebar -->
+        <aside class="left-sidebar">
+
+            <div>
+
+                <div class="brand-logo d-flex align-items-center justify-content-between">
+
+                    <a asp-controller="StudentAccount"
+                       asp-action="Dashboard"
+                       class="text-nowrap logo-img">
+
+                        <img src="~/assets/images/logos/logo.svg" alt="Logo" />
+
+                    </a>
+
+                    <div class="close-btn d-xl-none d-block sidebartoggler cursor-pointer"
+                         id="sidebarCollapse">
+
+                        <i class="ti ti-x fs-6"></i>
+
+                    </div>
+
+                </div>
+
+                <nav class="sidebar-nav scroll-sidebar" data-simplebar>
+
+                    <ul id="sidebarnav">
+
+                        <li class="nav-small-cap">
+                            <span class="hide-menu">
+                                Student Portal
+                            </span>
+                        </li>
+
+                        <!-- Dashboard -->
+
+                        <li class="sidebar-item">
+
+                            <a class="sidebar-link"
+                               asp-controller="StudentAccount"
+                               asp-action="Dashboard">
+
+                                <span>
+                                    <i class="ti ti-dashboard"></i>
+                                </span>
+
+                                <span class="hide-menu">
+                                    Dashboard
+                                </span>
+
+                            </a>
+
+                        </li>
+
+                        <!-- My Profile -->
+
+                        <li class="sidebar-item">
+
+                            <a class="sidebar-link"
+                               asp-controller="StudentAccount"
+                               asp-action="Dashboard">
+
+                                <span>
+                                    <i class="ti ti-user"></i>
+                                </span>
+
+                                <span class="hide-menu">
+                                    My Profile
+                                </span>
+
+                            </a>
+
+                        </li>
+
+                        <!-- Public Profile -->
+
+                        <li class="sidebar-item">
+
+                            <a class="sidebar-link"
+                               asp-controller="StudentAccount"
+                               asp-action="MyPublicProfile">
+                                <span>
+                                    <i class="ti ti-world"></i>
+                                </span>
+
+                                <span class="hide-menu">
+                                    Public Profile
+                                </span>
+
+                            </a>
+
+                        </li>
+
+                        <!-- Change Password -->
+
+                        <li class="sidebar-item">
+
+                            <a class="sidebar-link"
+                               asp-controller="StudentAccount"
+                               asp-action="ForgotPassword">
+
+                                <span>
+                                    <i class="ti ti-lock"></i>
+                                </span>
+
+                                <span class="hide-menu">
+                                    Change Password
+                                </span>
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                </nav>
+
+            </div>
+
+        </aside>
+
+        <!-- Body -->
+
+        <div class="body-wrapper">
+
+            <!-- Header -->
+
+            <header class="app-header">
+
+                <nav class="navbar navbar-expand-lg navbar-light">
+
+                    <ul class="navbar-nav">
+
+                        <li class="nav-item d-block d-xl-none">
+
+                            <a class="nav-link sidebartoggler"
+                               id="headerCollapse"
+                               href="javascript:void(0)">
+
+                                <i class="ti ti-menu-2"></i>
+
+                            </a>
+
+                        </li>
+
+                    </ul>
+
+                    <div class="navbar-collapse justify-content-end px-0">
+
+                        <ul class="navbar-nav flex-row ms-auto align-items-center">
+
+                            <li class="nav-item me-3">
+
+                                <span class="fw-semibold text-primary">
+
+                                    Welcome,
+                                    @Context.Session.GetString("StudentName")
+
+                                </span>
+
+                            </li>
+
+                            <li class="nav-item">
+
+                                <a asp-controller="StudentAccount"
+                                   asp-action="Logout"
+                                   class="btn btn-danger btn-sm">
+
+                                    <i class="ti ti-logout"></i>
+
+                                    Logout
+
+                                </a>
+
+                            </li>
+
+                        </ul>
+
+                    </div>
+
+                </nav>
+
+            </header>
+
+            <!-- Page -->
+
+            <div class="body-wrapper-inner">
+
+                <div class="container-fluid">
+
+                    @RenderBody()
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <script src="~/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="~/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/assets/js/sidebarmenu.js"></script>
+    <script src="~/assets/js/app.min.js"></script>
+    <script src="~/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="~/assets/libs/simplebar/dist/simplebar.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+
+</body>
+
+</html>

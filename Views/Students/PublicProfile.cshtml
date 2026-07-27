@@ -1,0 +1,43 @@
+﻿@model studentmanagement.Models.Student
+
+@{
+    Layout = "_StudentLayout";
+    ViewData["Title"] = "Student Profile";
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow">
+
+        <div class="card-body text-center">
+
+            <img src="@Model.ProfileImage"
+                 width="180"
+                 height="180"
+                 class="rounded-circle border mb-3"
+                 style="object-fit:cover;" />
+
+            <h2>@Model.Name</h2>
+
+            <hr />
+
+            <h5>Student Code</h5>
+            <p>@Model.StudentCode</p>
+
+            <h5>Course</h5>
+            <p>@Model.Course</p>
+
+            <h5>Email</h5>
+            <p>@Model.Email</p>
+
+            <h5>Age</h5>
+            <p>@Model.Age</p>
+
+            <h5>Registration Date</h5>
+            <p>@Model.RegistrationDate.ToString("dd MMM yyyy")</p>
+
+        </div>
+
+    </div>
+
+</div>
